@@ -31,3 +31,22 @@ You will have a user that can signup / login. A user can have up to 10 character
   3. /login - Login
   4. /characters/new - CharacterForm
   5. /characters - CharacterList
+
+
+### Data
+
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "Bob"
+    }
+  ],
+  "characters": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "name": "BobMaximus"
+    }
+  ]
+}

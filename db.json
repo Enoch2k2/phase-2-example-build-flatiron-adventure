@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "username": "BobTheFirst",
+      "id": 1
+    },
+    {
+      "username": "BobTheSecond",
+      "id": 2
+    },
+    {
+      "username": "BobTheThird",
+      "id": 3
+    },
+    {
+      "username": "BobTheFourth",
+      "id": 4
+    },
+    {
+      "username": "BobTheFifth",
+      "id": 5
+    },
+    {
+      "username": "BobTheSixth",
+      "id": 6
+    }
+  ]
+}
