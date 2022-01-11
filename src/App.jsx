@@ -6,6 +6,7 @@ import CharacterList from './components/characters/CharacterList';
 import Navbar from './components/navigation/Navbar';
 import Login from './components/sessions/Login';
 import Signup from './components/sessions/Signup';
+import Errors from './components/static/Errors';
 import Home from './components/static/Home';
 import { baseUrl } from './Globals';
 
@@ -13,6 +14,7 @@ import { baseUrl } from './Globals';
 const App = () => {
   const [currentUser, setCurrentUser] = useState({})
   const [loggedIn, setLoggedIn] = useState(false);
+  const [errors, setErrors] = useState([]);
 
   const loginUser = user => {
     setCurrentUser(user);
@@ -26,6 +28,14 @@ const App = () => {
     localStorage.removeItem('user_id');
   }
 
+  const addErrors = errors => {
+    setErrors(errors);
+  }
+
+  const clearErrors = () => {
+    setErrors([]);
+  }
+
   useEffect(() => {
     const userId = localStorage.getItem('user_id');
     if(userId && !loggedIn) {
@@ -33,15 +43,17 @@ const App = () => {
         .then(resp => resp.json())
         .then(data => loginUser(data))
     }
-  }, [])
+  }, [loggedIn])
+
 
   return (
     <Router>
       <Navbar loggedIn={ loggedIn } logoutUser={ logoutUser } />
+      <Errors errors={ errors } />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup loginUser={ loginUser } />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup loginUser={ loginUser } addErrors={ addErrors } clearErrors={ clearErrors } />} />
+        <Route path="/login" element={<Login loginUser={ loginUser } addErrors={ addErrors } clearErrors={ clearErrors } />} />
         <Route path="/characters" element={<CharacterList />} />
         <Route path="/characters/new" element={<CharacterForm />} />
       </Routes>

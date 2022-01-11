@@ -1,24 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { baseUrl, headers } from '../../Globals';
 import { useNavigate } from 'react-router-dom';
-const Signup = ({ loginUser }) => {
+const Signup = ({ loginUser, addErrors, clearErrors }) => {
   const [username, setUsername] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    fetch(baseUrl + '/users', {
-      method: "POST",
-      headers,
-      body: JSON.stringify({ username })
-    })
-      .then(resp => resp.json())
-      .then(data => {
-        loginUser(data);
-        navigate('/characters');
+    if(username.length >= 5) {
+      fetch(baseUrl + '/users', {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ username })
       })
+        .then(resp => resp.json())
+        .then(data => {
+          loginUser(data);
+          navigate('/characters');
+        })
+    } else {
+      addErrors(["Username must have more than 5 characters"])
+    }
   }
+
+  useEffect(() => {
+    return () => {
+      clearErrors();
+    }
+  }, [])
 
   return (
     <div>
