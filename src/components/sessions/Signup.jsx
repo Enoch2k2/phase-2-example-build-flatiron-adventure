@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { baseUrl, headers } from '../../Globals';
 import { useNavigate } from 'react-router-dom';
-const Signup = ({ loginUser, addErrors, clearErrors }) => {
+const Signup = ({ loggedIn, loginUser, addErrors, clearErrors }) => {
   const [username, setUsername] = useState('');
   const navigate = useNavigate();
 
@@ -25,10 +25,13 @@ const Signup = ({ loginUser, addErrors, clearErrors }) => {
   }
 
   useEffect(() => {
+    if(loggedIn) {
+      return navigate('/characters')
+    }
     return () => {
       clearErrors();
     }
-  }, [])
+  }, [loggedIn])
 
   return (
     <div>

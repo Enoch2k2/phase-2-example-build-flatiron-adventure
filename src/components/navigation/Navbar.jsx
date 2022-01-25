@@ -14,7 +14,6 @@ const Navbar = ({ loggedIn, logoutUser }) => {
       <ul>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/characters">Characters</Link></li>
-        <li><Link to="/characters/new">Create Character</Link></li>
         <li><a href="#" onClick={ logout }>Logout</a></li>
       </ul>
     )

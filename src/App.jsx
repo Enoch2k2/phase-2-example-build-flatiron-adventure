@@ -52,10 +52,10 @@ const App = () => {
       <Errors errors={ errors } />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup loginUser={ loginUser } addErrors={ addErrors } clearErrors={ clearErrors } />} />
-        <Route path="/login" element={<Login loginUser={ loginUser } addErrors={ addErrors } clearErrors={ clearErrors } />} />
-        <Route path="/characters" element={<CharacterList />} />
-        <Route path="/characters/new" element={<CharacterForm />} />
+        <Route path="/signup" element={<Signup loggedIn={ loggedIn } loginUser={ loginUser } addErrors={ addErrors } clearErrors={ clearErrors } />} />
+        <Route path="/login" element={<Login loggedIn={ loggedIn } loginUser={ loginUser } addErrors={ addErrors } clearErrors={ clearErrors } />} />
+        <Route path="/characters" element={<CharacterList loggedIn={ loggedIn } currentUser={ currentUser } />} />
+        <Route path="/characters/new" element={<CharacterForm loggedIn={ loggedIn } currentUser={ currentUser } />} />
       </Routes>
     </Router>
   );

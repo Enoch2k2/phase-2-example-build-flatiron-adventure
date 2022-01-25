@@ -46,7 +46,18 @@ You will have a user that can signup / login. A user can have up to 10 character
     {
       "id": 1,
       "user_id": 1,
-      "name": "BobMaximus"
+      "name": "BobMaximus",
+      "race": "elf",
+      "stats": {
+        "str": 20,
+        "int": 15,
+        "agi": 11,
+        "hp": 200,
+        "mp": 50,
+        "spd": 5
+      },
+      "klass": "warrior",
+      "gender": "male"
     }
   ]
 }

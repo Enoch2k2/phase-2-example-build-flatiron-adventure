@@ -28,5 +28,23 @@
       "username": "samwiseGamgee",
       "id": 7
     }
+  ],
+  "characters": [
+    {
+      "user_id": 1,
+      "name": "Biscuits & Gravey",
+      "race": "human",
+      "stats": {
+        "str": 25,
+        "int": 7,
+        "agi": 12,
+        "hp": 250,
+        "mp": 5,
+        "spd": 10
+      },
+      "klass": "bard",
+      "sex": "female",
+      "id": 1
+    }
   ]
 }

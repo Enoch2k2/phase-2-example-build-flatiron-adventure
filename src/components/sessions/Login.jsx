@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { baseUrl } from '../../Globals';
 
-const Login = ({ loginUser, addErrors, clearErrors }) => {
+const Login = ({ loggedIn, loginUser, addErrors, clearErrors }) => {
   const [username, setUsername] = useState("");
   const [users, setUsers] = useState([]);
 
-  const navigate = useNavigate(0);
+  const navigate = useNavigate();
 
   const handleChange = e => {
     setUsername(e.target.value);
@@ -25,6 +25,9 @@ const Login = ({ loginUser, addErrors, clearErrors }) => {
   }
 
   useEffect(() => {
+    if(loggedIn) {
+      return navigate('/characters')
+    }
     fetch(baseUrl + "/users")
       .then(resp => resp.json())
       .then(data => setUsers(data))
@@ -32,7 +35,7 @@ const Login = ({ loginUser, addErrors, clearErrors }) => {
     return () => {
       clearErrors();
     }
-  }, [])
+  }, [loggedIn])
 
   return (
     <div>
