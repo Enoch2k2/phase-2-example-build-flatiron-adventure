@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import CharacterCard from './CharacterCard';
 
-const CharacterList = ({ currentUser, loggedIn }) => {
+const CharacterList = ({ currentUser, loggedIn, characters }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,10 +15,15 @@ const CharacterList = ({ currentUser, loggedIn }) => {
     navigate('/characters/new');
   }
 
+  const characterCards = characters.map(character => <CharacterCard key={ character.id } character={ character } />)
+
   return (
     <div>
       <h1>{ currentUser.username }'s Characters</h1>
       <button onClick={ handleCreateCharacterButton }>Create Character</button>
+      <ul>
+        { characterCards }
+      </ul>
     </div>
   )
 }

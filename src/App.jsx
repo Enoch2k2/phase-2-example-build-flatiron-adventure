@@ -13,6 +13,7 @@ import { baseUrl } from './Globals';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState({})
+  const [characters, setCharacters] = useState([])
   const [loggedIn, setLoggedIn] = useState(false);
   const [errors, setErrors] = useState([]);
 
@@ -20,12 +21,27 @@ const App = () => {
     setCurrentUser(user);
     setLoggedIn(true);
     localStorage.setItem('user_id', user.id);
+    fetchCharacters(user);
+  }
+
+  const fetchCharacters = user => {
+    fetch(baseUrl + '/characters')
+    .then(resp => resp.json())
+    .then(charas => {
+      const userCharacters = charas.filter(char => char.user_id === user.id);
+      setCharacters(userCharacters)
+    })
   }
 
   const logoutUser = () => {
     setCurrentUser({});
     setLoggedIn(false);
     localStorage.removeItem('user_id');
+  }
+
+  const addCharacter = character => {
+    // adds the character to the state
+    setCharacters([...characters, character])
   }
 
   const addErrors = errors => {
@@ -41,7 +57,9 @@ const App = () => {
     if(userId && !loggedIn) {
       fetch(baseUrl + '/users/' + userId)
         .then(resp => resp.json())
-        .then(data => loginUser(data))
+        .then(data => {
+          loginUser(data)
+        })
     }
   }, [loggedIn])
 
@@ -54,8 +72,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup loggedIn={ loggedIn } loginUser={ loginUser } addErrors={ addErrors } clearErrors={ clearErrors } />} />
         <Route path="/login" element={<Login loggedIn={ loggedIn } loginUser={ loginUser } addErrors={ addErrors } clearErrors={ clearErrors } />} />
-        <Route path="/characters" element={<CharacterList loggedIn={ loggedIn } currentUser={ currentUser } />} />
-        <Route path="/characters/new" element={<CharacterForm loggedIn={ loggedIn } currentUser={ currentUser } />} />
+        <Route path="/characters" element={<CharacterList loggedIn={ loggedIn } currentUser={ currentUser } characters={ characters } />} />
+        <Route path="/characters/new" element={<CharacterForm loggedIn={ loggedIn } currentUser={ currentUser } addErrors={ addErrors } clearErrors={ clearErrors } addCharacter={ addCharacter } />} />
       </Routes>
     </Router>
   );

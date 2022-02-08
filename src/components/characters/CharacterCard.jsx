@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const CharacterCard = () => {
+const CharacterCard = ({ character }) => {
   return (
-    <div>
-      CharacterCard
-    </div>
+    <li>
+      <Link to="#">{ character.name }</Link>
+    </li>
   )
 }
 

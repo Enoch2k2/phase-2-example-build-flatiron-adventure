@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { baseUrl, headers } from '../../Globals';
 
-const CharacterForm = ({ loggedIn, currentUser }) => {
+const CharacterForm = ({ loggedIn, currentUser, addErrors, clearErrors, addCharacter }) => {
   const navigate = useNavigate();
 
   const [state, setState] = useState({
@@ -22,15 +22,19 @@ const CharacterForm = ({ loggedIn, currentUser }) => {
   })
 
   useEffect(() => {
-    // if(!loggedIn) {
-    //   navigate('/login');
-    // }
+    if(!loggedIn) {
+      navigate('/login');
+    }
     if(loggedIn) {
       setState({
         ...state,
         user_id: currentUser.id,
         stats: checkClass("warrior")
       })
+    }
+
+    return () => {
+      clearErrors()
     }
 
   }, [currentUser, loggedIn])
@@ -87,13 +91,22 @@ const CharacterForm = ({ loggedIn, currentUser }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    fetch(baseUrl + "/characters", {
-      method: "POST",
-      headers,
-      body: JSON.stringify(state)
-    })
-      .then(resp => resp.json())
-      .then(data => console.log(data))
+
+    if(state.name) {
+      fetch(baseUrl + "/characters", {
+        method: "POST",
+        headers,
+        body: JSON.stringify(state)
+      })
+        .then(resp => resp.json())
+        .then(data => {
+          addCharacter(data);
+          navigate("/characters")
+        })
+    } else {
+      addErrors(["Name must exist"])
+    }
+
   }
 
   const handleChange = e => {
