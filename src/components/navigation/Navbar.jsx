@@ -1,5 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 
 const Navbar = ({ loggedIn, logoutUser }) => {
 
@@ -11,29 +17,43 @@ const Navbar = ({ loggedIn, logoutUser }) => {
 
   const loggedInLinks = () => {
     return (
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/characters">Characters</Link></li>
-        <li><a href="#" onClick={ logout }>Logout</a></li>
-      </ul>
+      <>
+        <Button color="inherit" component={ Link } to="/">Home</Button>
+        <Button color="inherit" component={ Link } to="/characters">Characters</Button>
+        <Button color="inherit" onClick={ logout }>Logout</Button>
+      </>
     )
   }
 
   const loggedOutLinks = () => {
     return (
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/signup">Create Account</Link></li>
-        <li><Link to="/login">Login</Link></li>
-      </ul>
+      <>
+            <Button color="inherit" component={ Link } to="/">Home</Button>
+            <Button color="inherit" component={ Link } to="/signup">Create Account</Button>
+            <Button color="inherit" component={ Link } to="/login">Login</Button>
+      </>
     )
   }
 
   return (
-    <div>
-      <h3>Flatiron Adventure</h3>
-      { loggedIn ? loggedInLinks() : loggedOutLinks() }
-    </div>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+          </IconButton>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            Flatiron Adventure
+          </Typography>
+          { loggedIn ? loggedInLinks() : loggedOutLinks() }
+          </Toolbar>
+      </AppBar>
+    </Box>
   )
 }
 

@@ -4,7 +4,6 @@ import { baseUrl, headers } from '../../Globals';
 
 const CharacterForm = ({ loggedIn, currentUser, addErrors, clearErrors, addCharacter }) => {
   const navigate = useNavigate();
-
   const [state, setState] = useState({
     user_id: 0,
     name: "",
@@ -18,7 +17,8 @@ const CharacterForm = ({ loggedIn, currentUser, addErrors, clearErrors, addChara
       spd: 0
     },
       klass: "warrior",
-      sex: "male"
+      sex: "male",
+      level: 1
   })
 
   useEffect(() => {

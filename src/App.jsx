@@ -32,18 +32,22 @@ const App = () => {
       setCharacters(userCharacters)
     })
   }
-
+  
   const logoutUser = () => {
     setCurrentUser({});
     setLoggedIn(false);
     localStorage.removeItem('user_id');
   }
-
+  
   const addCharacter = character => {
     // adds the character to the state
     setCharacters([...characters, character])
   }
 
+  const deleteCharacter = character => {
+    setCharacters(characters.filter(char => char.id !== character.id))
+  }
+  
   const addErrors = errors => {
     setErrors(errors);
   }
@@ -72,7 +76,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup loggedIn={ loggedIn } loginUser={ loginUser } addErrors={ addErrors } clearErrors={ clearErrors } />} />
         <Route path="/login" element={<Login loggedIn={ loggedIn } loginUser={ loginUser } addErrors={ addErrors } clearErrors={ clearErrors } />} />
-        <Route path="/characters" element={<CharacterList loggedIn={ loggedIn } currentUser={ currentUser } characters={ characters } />} />
+        <Route path="/characters" element={<CharacterList loggedIn={ loggedIn } currentUser={ currentUser } characters={ characters } deleteCharacter={ deleteCharacter } />} />
         <Route path="/characters/new" element={<CharacterForm loggedIn={ loggedIn } currentUser={ currentUser } addErrors={ addErrors } clearErrors={ clearErrors } addCharacter={ addCharacter } />} />
       </Routes>
     </Router>

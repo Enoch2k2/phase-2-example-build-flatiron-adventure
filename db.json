@@ -32,55 +32,7 @@
   "characters": [
     {
       "user_id": 1,
-      "name": "Biscuits & Gravey",
-      "race": "elf",
-      "stats": {
-        "str": 9,
-        "int": 20,
-        "agi": 9,
-        "hp": 100,
-        "mp": 220,
-        "spd": 14
-      },
-      "klass": "healer",
-      "sex": "male",
-      "id": 1
-    },
-    {
-      "user_id": 1,
-      "name": "Steven King",
-      "race": "orc",
-      "stats": {
-        "str": 25,
-        "int": 7,
-        "agi": 12,
-        "hp": 250,
-        "mp": 5,
-        "spd": 10
-      },
-      "klass": "warrior",
-      "sex": "male",
-      "id": 2
-    },
-    {
-      "user_id": 1,
-      "name": "Marissa",
-      "race": "dwarf",
-      "stats": {
-        "str": 9,
-        "int": 20,
-        "agi": 9,
-        "hp": 100,
-        "mp": 220,
-        "spd": 14
-      },
-      "klass": "healer",
-      "sex": "female",
-      "id": 3
-    },
-    {
-      "user_id": 1,
-      "name": "George Lucas",
+      "name": "Theresa",
       "race": "human",
       "stats": {
         "str": 7,
@@ -91,13 +43,14 @@
         "spd": 12
       },
       "klass": "mage",
-      "sex": "male",
-      "id": 4
+      "sex": "female",
+      "level": 1,
+      "id": 3
     },
     {
       "user_id": 1,
-      "name": "Luis",
-      "race": "orc",
+      "name": "Mufasa",
+      "race": "dwarf",
       "stats": {
         "str": 9,
         "int": 20,
@@ -108,39 +61,25 @@
       },
       "klass": "healer",
       "sex": "male",
-      "id": 5
+      "level": 1,
+      "id": 4
     },
     {
       "user_id": 1,
-      "name": "Samantha",
-      "race": "human",
+      "name": "Biscuits & Gravey",
+      "race": "elf",
       "stats": {
-        "str": 10,
+        "str": 25,
         "int": 7,
-        "agi": 25,
-        "hp": 130,
-        "mp": 15,
-        "spd": 15
+        "agi": 12,
+        "hp": 250,
+        "mp": 5,
+        "spd": 10
       },
-      "klass": "thief",
-      "sex": "female",
-      "id": 6
-    },
-    {
-      "user_id": 2,
-      "name": "Pancake",
-      "race": "dwarf",
-      "stats": {
-        "str": 12,
-        "int": 11,
-        "agi": 15,
-        "hp": 125,
-        "mp": 25,
-        "spd": 16
-      },
-      "klass": "bard",
-      "sex": "female",
-      "id": 7
+      "klass": "warrior",
+      "sex": "male",
+      "level": 1,
+      "id": 5
     }
   ]
 }
